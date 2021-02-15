@@ -9,7 +9,7 @@ Projeto desenvolvido para o teste técnico da Juntos Somos Mais. Foi desenvolvid
  
 > Estou estudando CSS-in-JS, então implementei o Styled Components, tenho total noção que a forma que fiz não é com as melhores práticas de uso, porém, tomei a iniciativa de usar em algumas features e assim aprender mais sobre essa lib e esse conceito de CSS-in-JS.
 
-> O back-end está consumindo e renderizando em tela o build do front-end, criando-se uma SSR.
+> O back-end está consumindo e renderizando em tela o build do front-end.
 
 
 ## Rodar Projeto Completo :computer:
