@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <ul v-if="totalPages > 1" class="pagination">
-      <router-link :to="{query: query(1)}"> « </router-link>
+  <div class="pagination">
+    <ul v-if="totalPages > 1" class="pagination__box">
+      <router-link :to="{query: query(1)}">«</router-link>
 
-      <li v-for="pagina in pages" :key="pagina">
-        <router-link :to="{query: query(pagina)}">{{pagina}}</router-link>
+      <li v-for="page in pages" :key="page">
+        <router-link :to="{query: query(page)}">{{page}}</router-link>
       </li>
       
-      <router-link :to="{query: query(totalPages)}"> » </router-link>
+      <router-link :to="{query: query(totalPages)}">»</router-link>
     </ul>
   </div>
 </template>
@@ -25,10 +25,10 @@ export default {
     }
   },
   methods: {
-    query(pagina) {
+    query(page) {
       return {
         ...this.$route.query,
-        page: pagina
+        page: page
       };
     }
   },
@@ -39,7 +39,7 @@ export default {
     },
     pages() {
       const current = Number(this.$route.query.page);
-      const range = 2;
+      const range = 3;
       const offset = Math.ceil(range / 2);
       const total = this.totalPages;
       const pagesArr = []
@@ -59,29 +59,31 @@ export default {
 
 <style lang="scss">
 .pagination {
-  grid-column: 1 / -1;
-  margin-top: 50px;
+  &__box {
+    grid-column: 1 / -1;
+    margin-top: 50px;
 
-  li {
-    display: inline-block;
+    li {
+      display: inline-block;
+
+      a {
+        &.router-link-exact-active {
+          background: #4E71A7;
+          color: #fff;
+        }
+      }
+    }
 
     a {
-      &.router-link-exact-active {
+      padding: 6px 14px;
+      border-radius: 2px;
+      margin: 4px;
+      font-size: 17px;
+
+      &:hover {
         background: #4E71A7;
         color: #fff;
       }
-    }
-  }
-
-  a {
-    padding: 6px 14px;
-    border-radius: 2px;
-    margin: 4px;
-    font-size: 17px;
-
-    &:hover {
-      background: #4E71A7;
-      color: #fff;
     }
   }
 }

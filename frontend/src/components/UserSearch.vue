@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <form>
+    <form class="search__box">
       <input name="search" id="search" type="text" placeholder="Buscar Aqui" v-model="search">
       <input type="submit" id="submit" value="Buscar" @click.prevent="searchUser">
     </form>
@@ -36,7 +36,7 @@ export default {
   width: 100%;
   justify-content: center;
 
-  form {
+  &__box {
     position: relative;
     max-width: 550px;
     width: 100%;
@@ -81,7 +81,7 @@ export default {
 /* ================= Responsive ================= */
 @media screen and (max-width: 768px) {
   .search {
-    form {
+    &__box {
       width: 95%;
     }
   }

@@ -10,7 +10,6 @@ api.engine('html', require('ejs').renderFile);
 const corsOptions = {	
     allowedOrigin: "*",	
 	allowedMethods: "GET,POST,PUT,OPTIONS,DELETE,PATCH",	
-    //allowedHeaders: ["Accept", "Authorization", "Content-Type", "Origin", "X-Requested-With", "x-total-count"],	
     allowedHeaders: ["x-total-count"],	
     exposedHeaders: 'Authorization',	
 };

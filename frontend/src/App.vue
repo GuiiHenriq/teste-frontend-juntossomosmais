@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header class="header">
-      <div class="logo">
+      <div class="header__logo">
         <router-link :to="{ path: '/'}">
           <img src="./assets/logo.svg" alt="Juntos Somos Mais" />
         </router-link>
@@ -14,11 +14,11 @@
       <router-view/>
     </transition>
 
-    <footer>
-      <img class="logo" src="./assets/logo.svg" alt="Juntos Somos Mais">
+    <footer class="footer">
+      <img class="footer__logo" src="./assets/logo.svg" alt="Juntos Somos Mais">
       <h2>Juntos Somos Mais Fidelização S.A.</h2>
       <p>Siga-nos em nossas redes sociais:</p>
-      <div class="social">
+      <div class="footer__social">
         <a href="#">
           <img src="./assets/ico-facebook.svg" alt="Facebook">
         </a>
@@ -48,21 +48,6 @@ export default {
       querySearch: '',
     };
   },
-  methods: {
-    searchUser() {
-      let valueSearch = this.querySearch.toLowerCase().split(" ");
-
-      if(valueSearch[0] === undefined) valueSearch[0] = '';
-      if(valueSearch[1] === undefined) valueSearch[1] = '';
-
-      this.$router.push({name: 'UserSearch', params: {firstName: valueSearch[0], lastName: valueSearch[1]}});
-
-      this.valueSearch = '';
-    },
-  },
-  updated() {
-    this.querySearch;
-  }
 }
 </script>
 
@@ -98,7 +83,7 @@ a {color: #345;text-decoration: none;}
   width: 100%;
   margin: 50px 0 80px 0;
 
-  .logo {
+  &__logo {
     width: 30%;
     display: flex;
     justify-content: center;
@@ -116,7 +101,7 @@ a {color: #345;text-decoration: none;}
   }
 }
 
-footer {
+.footer {
   margin-top: 80px;
   display: flex;
   flex-direction: column;
@@ -127,7 +112,7 @@ footer {
   background: #FFFFFF;
   box-shadow: 0 -21px 36px -27px rgba(30, 60, 90, 0.2);
 
-  .logo {
+  &__logo {
     max-width: 160px;
     margin-bottom: 50px;
   }
@@ -137,7 +122,7 @@ footer {
     font-size: 20px;
   }
   
-  .social {
+  &__social {
     margin-top: 15px;
     display: flex;
 
@@ -160,7 +145,7 @@ footer {
   .header {
     flex-direction: column;
 
-    .logo {
+    &__logo {
       width: 100%;
       margin-bottom: 15px;
     }
@@ -168,7 +153,7 @@ footer {
 }
 
 
-/* ============ Loading ============ */
+/* ============ Keyframes Loading ============ */
 @-webkit-keyframes load6 {
   0% {
     box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;

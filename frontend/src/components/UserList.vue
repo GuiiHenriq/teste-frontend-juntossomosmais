@@ -6,7 +6,7 @@
 
   <main>
     <div class="filter">
-      <form>
+      <form class="filter__box">
         <p>Filtar por usuário:</p>
         <input type="radio" id="todos" name="filter" value="todos" v-model="selected" @change="filterUser" checked>
         <label for="todos">Todos</label>
@@ -23,8 +23,8 @@
     </div>
    <div class="users" v-if="users.length">
      <div class="container">
-        <ul class="list-infos">
-          <li v-for="(user, index) in users" :key="index" class="list-infos">
+        <ul class="users__list-infos">
+          <li v-for="(user, index) in users" :key="index" class="users__list-infos--item">
             <router-link :to="{name: 'UserPage', params: {id: user.id}}">
               <img :src="user.picture.large" alt="">
               <h1>{{user.name.first}} {{user.name.last}}</h1>
@@ -39,7 +39,7 @@
      <UserPagination :usersTotal="usersTotal" :usersLimit="usersLimit" />
    </div>
 
-   <div class="users" v-else>
+   <div class="users" empty v-else>
      <div class="container">
        <h1>Usuário não encontrado...</h1>
      </div>
@@ -68,7 +68,7 @@ export default {
       users: '',
       selected: '',
       usersLimit: 9,
-      usersTotal: 0,
+      usersTotal: 200,
     };
   },
   computed: {
@@ -83,7 +83,7 @@ export default {
 
       try {
         await api.get(this.url).then(r => {
-          this.usersTotal = r.headers['x-total-count'];
+          //this.usersTotal = r.headers['x-total-count'];
 
           this.users = r.data;
         });
@@ -132,7 +132,7 @@ main {
   height: max-content;
   margin-right: 10px;
 
-  form {
+  &__box {
     background: #FFFFFF;
     padding: 30px 20px;
     box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
@@ -150,6 +150,13 @@ main {
   width: 100%;
   justify-content: center;
 
+  &[empty] {
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+    }
+  }
+
   .container {
     width: 95%;
     display: flex;
@@ -157,13 +164,13 @@ main {
     justify-content: center;
   }
 
-  .list-infos {
+  &__list-infos {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
 
-    li {
+    &--item {
       text-align: center;
       list-style: none;
       width: 33.33%;
@@ -214,34 +221,13 @@ main {
     flex-direction: column;
   }
 
-  .header {
-    flex-direction: column;
-
-    .logo {
-      width: 100%;
-      margin-bottom: 15px;
-    }
-
-    .search {
-      form {
-        justify-content: center;
-        display: flex;
-
-        #search {
-          max-width: 100%;
-          width: 65%;
-        }
-      }
-    }
-  }
-
   .filter {
     width: 100%;
     margin: 0 0 10px 0;
     display: flex;
     justify-content: center;
 
-    form {
+    &__box {
       width: 95%;
       box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
     }
@@ -250,8 +236,10 @@ main {
   .users {
     .container {
       flex-direction: column;
+    }
 
-      .list-infos {
+    &__list-infos {
+      &--item {
         width: 100%;
         margin: 0 0 20px 0;
       }
