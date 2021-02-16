@@ -64,13 +64,13 @@ api.get('/api/range', async (req, res) => {
         maxLon: -26.155681,
         maxLat: -46.603598
     };
-    let special1_filters = {
+    let especial1_filters = {
         minLon: -15.411580,
         minLat: -46.361899,
         maxLon: -2.196998,
         maxLat: -34.276938
     };
-    let special2_filters = {
+    let especial2_filters = {
         minLon: -20.000000,
         minLat: -52.997614,
         maxLon: -19.766959,
@@ -81,13 +81,13 @@ api.get('/api/range', async (req, res) => {
             filters = normal_filters;
         };
         if(type === 'especial') {
-            filters = special1_filters;
+            filters = especial1_filters;
         };
         if(type === 'special2') {
-            filters = special2_filters;
+            filters = especial2_filters;
         };
         if(type === 'trabalhoso') {
-            [normal_filters, special1_filters, special2_filters].map(filters => {
+            [normal_filters, especial1_filters, especial2_filters].map(filters => {
                 response = response.filter(x => 
                     x.location.coordinates.latitude < filters.minLat ||
                     x.location.coordinates.latitude > filters.maxLat ||
